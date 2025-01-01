@@ -31,20 +31,20 @@ public interface IServiceBusService
     Task<IEnumerable<string>> ListTopicNamesAsync();
 
     Task<bool> SendMessageToQueueAsync(
-        string queueName, 
+        string queueName,
         BinaryData message,
-        DateTimeOffset scheduleAt);
+        [Optional] DateTimeOffset scheduleAt);
     Task<bool> SendMessageToTopicAsync(
         string topicName,
         BinaryData message,
-        DateTimeOffset scheduleAt);
+        [Optional] DateTimeOffset scheduleAt);
 
-    Task<IEnumerable<BinaryData>> ReceiveSubscriptionAsync(
+    Task<IEnumerable<(bool, BinaryData)>> ReceiveSubscriptionAsync(
         string topicName,
         string subscriptionName,
         int messageCount);
 
-    Task<IEnumerable<BinaryData>> ReceiveQueueAsync(
+    Task<IEnumerable<(bool, BinaryData)>> ReceiveQueueAsync(
        string queueName,
        int messageCount);
 
