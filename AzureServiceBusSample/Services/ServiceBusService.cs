@@ -106,6 +106,9 @@ namespace AzureServiceBusSample.Services
             if (await QueueExistsAsync(name))
                 return false;
 
+            if (lockDuration > TimeSpan.FromMinutes(5))
+                lockDuration = TimeSpan.FromMinutes(5);
+
             var queueOptions = new CreateQueueOptions(name)
             {
                 LockDuration = lockDuration,
