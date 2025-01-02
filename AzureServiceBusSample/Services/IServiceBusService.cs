@@ -39,12 +39,12 @@ public interface IServiceBusService
         BinaryData message,
         [Optional] DateTimeOffset scheduleAt);
 
-    Task<IEnumerable<(bool, BinaryData)>> ReceiveSubscriptionAsync(
+    Task<IEnumerable<(bool, BinaryData?)>> ReceiveSubscriptionAsync(
         string topicName,
         string subscriptionName,
         int messageCount);
 
-    Task<IEnumerable<(bool, BinaryData)>> ReceiveQueueAsync(
+    Task<IEnumerable<(bool, BinaryData?)>> ReceiveQueueAsync(
        string queueName,
        int messageCount);
 
